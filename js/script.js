@@ -1,15 +1,10 @@
-// 1ая задача. Скрывать ненужные табы
-// 2ая задачаю Показать нужный таб
-// 3я задача . Назначить обработчик событий, который будет манипулировать этими функциями
-
-
 window.addEventListener('DOMContentLoaded', () => {
 
     // Tabs
     const tabs = document.querySelectorAll('.tabheader__item'),
         tabsContent = document.querySelectorAll('.tabcontent'),
         tabsParent = document.querySelector('.tabheader__items');
-    // 1ая задача
+
     function hideTabContent() {
         tabsContent.forEach(item => {
             item.classList.add('hide');
@@ -21,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
     }
-    // 2ая задача
+
     function showTabContent(i = 0) {
         tabsContent[i].classList.add('show', 'fade');
         tabsContent[i].classList.remove('hide');
@@ -30,7 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     hideTabContent();
     showTabContent();
-    // 3я задача
+
     tabsParent.addEventListener('click', (event) => {
         const target = event.target;
 
@@ -62,7 +57,6 @@ window.addEventListener('DOMContentLoaded', () => {
             'seconds': seconds
         };
     }
-
 
     function getZero(num) {
         if (num >= 0 && num < 10) {
@@ -119,7 +113,6 @@ window.addEventListener('DOMContentLoaded', () => {
     modalTrigger.forEach(btn => {
         btn.addEventListener('click', openModal);
     });
-
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal || e.target.getAttribute('data-close') == '') {
@@ -289,7 +282,55 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
-    fetch('http://localhost:3000/menu')
-        .then(data => data.json())
-        .then(res => console.log(res));
+
+    // Slider
+
+    const slides = document.querySelectorAll('.offer__slide'),
+      prev = document.querySelector('.offer__slider-prev'),
+      next = document.querySelector('.offer__slider-next'),
+      total = document.querySelector('#total'),
+      current = document.querySelector('#current');
+    let slideIndex = 1;
+
+    showSlides(slideIndex);
+
+    if (slides.length < 10) {
+        total.textContent = `0${slides.length}`;
+    } else { 
+        total.textContent = slides.length;
+    }
+
+    function showSlides(n) {
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+
+        if (n < 1){
+            slideIndex = slides.length;
+        }
+
+        slides.forEach(item => item.style.display = 'none');
+
+        slides[slideIndex - 1].style.display = 'block';
+
+        if (slides.length < 10) {
+            current.textContent = `0${slideIndex}`;
+        } else { 
+            current.textContent = slideIndex;
+        }
+    }
+
+     
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    prev.addEventListener('click', () => {
+        plusSlides(-1);
+    });
+
+    next.addEventListener('click', () => {
+        plusSlides(1);
+    });
 });
