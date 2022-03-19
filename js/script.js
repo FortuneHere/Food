@@ -337,11 +337,15 @@ window.addEventListener('DOMContentLoaded', () => {
         dots.push(dot);
     }
 
+    function convertToNumbers (string) {
+        return +string.replace(/\D/g, '');
+    }
+
     next.addEventListener('click', () => {
-        if (offset == +width.replace(/\D/g, '') * (slides.length - 1)){
+        if (offset == convertToNumbers(width) * (slides.length - 1)){
             offset = 0;
         } else {
-            offset += +width.replace(/\D/g, '');
+            offset += convertToNumbers(width);
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
@@ -359,9 +363,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     prev.addEventListener('click', () => {
         if (offset == 0){
-            offset = +width.replace(/\D/g, '') * (slides.length - 1);
+            offset = convertToNumbers(width) * (slides.length - 1);
         } else {
-            offset -= +width.replace(/\D/g, '');
+            offset -= convertToNumbers(width);
         }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
@@ -383,7 +387,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const slideTo = e.target.getAttribute('data-slide-to');
 
             slideIndex = slideTo;
-            offset = offset = +width.replace(/\D/g, '') * (slideTo - 1);
+            offset = convertToNumbers(width) * (slideTo - 1);
     
             slidesField.style.transform = `translateX(-${offset}px)`;
     
