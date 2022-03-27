@@ -1,6 +1,6 @@
-function cards() {
-    // Использум классы для карточек
+import {getResource} from '../services/services';
 
+function cards() {
     class MenuCard {
         constructor(src, alt, title, descr, price, parentSelector, ...classes) {
             this.src = src;
@@ -20,7 +20,7 @@ function cards() {
 
         render() {
             const element = document.createElement('div');
-            // Создаем дефолт блок, чтобы не ломалась верстка при пустом массиве
+
             if (this.classes.length === 0) {
                 this.element = 'menu__item';
                 element.classList.add(this.element);
@@ -42,17 +42,6 @@ function cards() {
         }
     }
 
-    const getResource = async (url) => {
-        const res = await fetch(url);
-        // fetch не имеет ошибок промиса, что не позволяет нам получить сообщение об ошибке 
-        //для решения данной проблемы используем .ok или status
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
-
-        return await res.json();
-    };
-
     getResource('http://localhost:3000/menu')
         .then(data => {
             data.forEach(({
@@ -65,7 +54,6 @@ function cards() {
                 new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
             });
         });
-
 }
 
-module.exports = cards;
+export default cards;

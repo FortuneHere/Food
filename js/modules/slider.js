@@ -1,19 +1,17 @@
-function slider() {
-    // Slider
-
-    const slides = document.querySelectorAll('.offer__slide'),
-        slider = document.querySelector('.offer__slider'),
-        prev = document.querySelector('.offer__slider-prev'),
-        next = document.querySelector('.offer__slider-next'),
-        total = document.querySelector('#total'),
-        current = document.querySelector('#current'),
-        slidesWrapper = document.querySelector('.offer__slider-wrapper'),
-        slidesField = document.querySelector('.offer__slider-inner'),
-        width = window.getComputedStyle(slidesWrapper).width;
-
+function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
 
     let slideIndex = 1;
     let offset = 0;
+
+    const slides = document.querySelectorAll(slide),
+        slider = document.querySelector(container),
+        prev = document.querySelector(prevArrow),
+        next = document.querySelector(nextArrow),
+        total = document.querySelector(totalCounter),
+        current = document.querySelector(currentCounter),
+        slidesWrapper = document.querySelector(wrapper),
+        slidesField = document.querySelector(field),
+        width = window.getComputedStyle(slidesWrapper).width;
 
     if (slides.length < 10) {
         total.textContent = `0${slides.length}`;
@@ -35,7 +33,6 @@ function slider() {
 
     slider.style.position = 'relative';
 
-    // dots
     const indicators = document.createElement('ol'), // ordered list
         dots = [];
 
@@ -128,4 +125,4 @@ function slider() {
         dots[slideIndex - 1].style.opacity = 1;
     }
 }
-    module.exports = slider;
+export default slider;
