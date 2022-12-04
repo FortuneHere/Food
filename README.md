@@ -1,6 +1,8 @@
 # Install
-npm install
+```
+npm install 
 npx json-server db.json
+```
 use live server vscode extension
 https://github.com/ritwickdey/vscode-live-server
 
