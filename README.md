@@ -13,7 +13,7 @@ https://github.com/ritwickdey/vscode-live-server
 Представляет из себя сайт по рекомендации здорового питания.
 Включает калькулятор калорий, модальное окно, перелистывание слайдов "карусель".
 
-[Полный курс по JavaScript + React - с нуля до результата Ивана Петриченко] (https://www.udemy.com/course/javascript_full/).
+[Полный курс по JavaScript + React - с нуля до результата Ивана Петриченко](https://www.udemy.com/course/javascript_full/).
 
 
 ![food-1](https://user-images.githubusercontent.com/97908844/205502572-f6afce99-dfae-45da-996c-762681cdfa43.png)
